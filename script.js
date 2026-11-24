@@ -66,8 +66,14 @@
       container.append(article);
     });
   };
-  renderUpdates(document.getElementById('diary-entries'), updates);
-  renderUpdates(document.getElementById('home-updates'), updates.slice(0,2));
+  const diaryContainer = document.getElementById('diary-entries');
+  const homeContainer = document.getElementById('home-updates');
+  const refreshUpdates = () => {
+    renderUpdates(diaryContainer, updates);
+    renderUpdates(homeContainer, updates.slice(0,2));
+  };
+  refreshUpdates();
+  document.querySelectorAll('[data-language]').forEach((button) => button.addEventListener('click', refreshUpdates));
 
   const intro = document.getElementById('site-intro');
   const audio = document.getElementById('site-audio');
